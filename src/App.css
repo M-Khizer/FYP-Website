@@ -2,24 +2,29 @@
   margin: 0;
   padding: 0;
 }
+body{
+  background-color: blue;
+}
 .main{
   text-align: center;
   display: flex;
   justify-content: center;
   padding: 30px 0px;
   background-color: blue;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sub-main{
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
-  height: 550px;  
+  height: 500px;
   width: 50%;
   /* box-shadow: 11px 12px 13px 12px rgb(207, 207, 207); */
-  padding-top: 20xp;
+  padding-top: 20px;
   border-radius: 60px;
   background-color: white;
+  margin-top: 1rem;
 }
 .signin-heading{
   padding-top: 3rem;
@@ -40,7 +45,7 @@
   background-color: rgba(211, 211, 211, 0.666);
   color: black;
   text-align: left;
-
+  font-size: 1rem;
 }
 .email-container input::placeholder{
   color: grey;  text-align: left;
@@ -60,6 +65,7 @@
   outline: none;
   background-color: rgba(211, 211, 211, 0.666);
   text-align: left;
+  font-size: 1rem;
 
 }
 .checkbox-container{
@@ -72,5 +78,90 @@
 }
 .checkbox-container label{
   font-size: 1.2rem;
+}
+
+.btn{
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1rem 0rem; 
+  width: 40%;
+  border:none;
+  outline: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  margin-top: 1.2rem;
+  letter-spacing: .1ch;
+}
+
+.btn:hover{
+    background-color: blue;
 
 }
+
+@media (min-width:1920px)
+{
+  .sub-main{
+    margin-top: 5rem;
+  }  
+}
+
+
+@media (max-width:500px)
+{
+  .sub-main{
+    width: 85%;
+    padding-top:10px;   
+    margin-top: 3rem; 
+  }  
+  .signin-heading{
+    font-size: 2.5rem;
+  }
+  .email-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .password-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .btn{
+    font-size: 1.2rem;
+    padding: 1rem 0rem; 
+    width: 60%;
+    /* letter-spacing: 0; */
+  }
+}
+
+@media (max-width:768px)
+{
+  .sub-main{
+    width: 85%;
+    padding-top:10px;   
+    margin-top: 3rem; 
+  }  
+  .signin-heading{
+    font-size: 2.5rem;
+  }
+  .email-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .password-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .btn{
+    font-size: 1.2rem;
+    padding: 1rem 0rem; 
+    width: 60%;
+    /* letter-spacing: 0; */
+  }
+}
+

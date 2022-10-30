@@ -18,7 +18,7 @@ export default function SignIn() {
             <input type="checkbox" />
             <label>Keep me signed in</label>
           </div>
-          <button>Sign In</button>
+          <button className='sign-in-btn btn'>Sign In</button>
         </form>
       </div>
     </div>
