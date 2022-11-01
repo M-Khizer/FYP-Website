@@ -5,12 +5,13 @@
 body{
   background-color: blue;
 }
+/* Sign in page */
 .main{
   text-align: center;
   display: flex;
   justify-content: center;
   padding: 30px 0px;
-  background-color: blue;
+  /* background-color: blue; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -22,11 +23,11 @@ body{
   width: 50%;
   /* box-shadow: 11px 12px 13px 12px rgb(207, 207, 207); */
   padding-top: 20px;
-  border-radius: 60px;
+  border-radius: 20px;
   background-color: white;
   margin-top: 1rem;
 }
-.signin-heading{
+.heading{
   padding-top: 3rem;
   font-size: 2.5rem;
 }
@@ -69,7 +70,7 @@ body{
 
 }
 .checkbox-container{
-  padding-top: 1rem;
+  padding-top: 1.2rem;
 }
 
 .checkbox-container input{
@@ -78,6 +79,7 @@ body{
 }
 .checkbox-container label{
   font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .btn{
@@ -109,6 +111,34 @@ body{
 }
 
 
+
+@media (max-width:768px)
+{
+  .sub-main{
+    width: 85%;
+    padding-top:10px;   
+    margin-top: 3rem; 
+  }  
+  .signin-heading{
+    font-size: 5rem;
+  }
+  .email-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .password-container input{
+    padding: 1.2rem;
+    width: 70%;
+    font-size: 1.1rem;
+  }
+  .btn{
+    font-size: 1.2rem;
+    padding: 1rem 0rem; 
+    width: 60%;
+  }
+}
+
 @media (max-width:500px)
 {
   .sub-main{
@@ -120,48 +150,106 @@ body{
     font-size: 2.5rem;
   }
   .email-container input{
-    padding: 1.2rem;
+    padding: 1rem;
     width: 70%;
     font-size: 1.1rem;
   }
   .password-container input{
-    padding: 1.2rem;
+    padding: 1rem;
     width: 70%;
     font-size: 1.1rem;
   }
   .btn{
     font-size: 1.2rem;
     padding: 1rem 0rem; 
-    width: 60%;
+    width: 90%;
     /* letter-spacing: 0; */
   }
 }
+/* Sign in page */
 
-@media (max-width:768px)
-{
-  .sub-main{
-    width: 85%;
-    padding-top:10px;   
-    margin-top: 3rem; 
-  }  
-  .signin-heading{
-    font-size: 2.5rem;
-  }
-  .email-container input{
-    padding: 1.2rem;
-    width: 70%;
-    font-size: 1.1rem;
-  }
-  .password-container input{
-    padding: 1.2rem;
-    width: 70%;
-    font-size: 1.1rem;
-  }
-  .btn{
+/* Dashboard */
+
+.box-container{
+  cursor: pointer;
+  width: 80%;
+  margin: 1rem auto;
+  border: none;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(211, 211, 211, 0.666);
+  border-radius: 20px;
+  /* text-align: center; */
+  padding: 1.5rem;
+  /* margin-top: 2rem; */
+}
+.boxes{
+  margin-top: 2rem;
+}
+.dashboard-sub-head{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.dashboard-btn{
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem; 
+  width: 15%;
+  border:none;
+  outline: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+  margin-top: 1.2rem;
+  letter-spacing: .1ch;
+}
+
+@media(max-width:850px){
+  
+  .dashboard-sub-head{
     font-size: 1.2rem;
-    padding: 1rem 0rem; 
-    width: 60%;
-    /* letter-spacing: 0; */
   }
+  
+  .dashboard-btn{
+    width: 13%;
+  }
+  
 }
-
+@media(max-width:450px){
+  
+  .dashboard-sub-head{
+    font-size: 1.1rem;
+  }
+  
+  .dashboard-btn{
+    width: 12%;
+  }
+  .box-container{
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+  }
+  
+}
+@media(max-width:370px){
+  
+  .dashboard-sub-head{
+    font-size: 1.1rem;
+  }
+  
+  .dashboard-btn{
+    width: 10%;
+  }
+  .box-container{
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+  }
+  
+}
+/* Dashboard */

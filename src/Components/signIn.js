@@ -4,7 +4,7 @@ export default function SignIn() {
   return (
     <div className='main'>
       <div className='sub-main'>
-        <h1 className='signin-heading'>Sign In</h1>
+        <h1 className='heading'>Sign In</h1>
         <form className='signin-form'>
 
           <div className='email-container'>
@@ -20,6 +20,7 @@ export default function SignIn() {
           </div>
           <button className='sign-in-btn btn'>Sign In</button>
         </form>
+        
       </div>
     </div>
   
