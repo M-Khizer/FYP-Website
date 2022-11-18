@@ -1,9 +1,13 @@
 
 import React, { useState } from 'react'
 
-export default function Dashboard({startScan,setStartScan}) {
+export default function Dashboard({startScan,setStartScan,nav}) {
 
 console.log(startScan)
+const handleWebcam=()=>{
+    setStartScan(true);
+    nav('/webcam');
+}
   return (
     <div className='main'>
         <div className='sub-main'>
@@ -14,13 +18,15 @@ console.log(startScan)
                 
                 <button className='box-container'>
                     <div className='dashboard-sub-head' 
-                        onClick={()=>{setStartScan(!startScan)}}>Create new attendance</div>
-                    <div className='dashboard-btn'>></div>
+                        onClick={handleWebcam}
+                       
+                        >Create new attendance</div>
+                    <div className='dashboard-btn'>Create</div>
                 </button>
 
                 <button className='box-container'>
                     <div className='dashboard-sub-head'>View previous attendance</div>
-                    <div className='dashboard-btn'>></div>
+                    <div className='dashboard-btn'>View</div>
                 </button>
 
             </div>

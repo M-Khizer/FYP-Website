@@ -1,25 +1,29 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
-export default function SignIn() {
-  const [username,setUsername]=useState('');
-  const [password,setPassword]=useState('');
-  // cosnt [username,setUser]
-
-  // useEffect(() => {
-    
-  // }, [third])
+export default function SignIn({username,password,nav,setPassword,setUsername,
+  userData,setUserData
+}) {
+  
   
   const handleSignIn= async (e)=>{
     e.preventDefault();
+    
+    
     const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/login',{
       username,
       password
-    }).then();
-    console.log(res.data);
+    })
     setUsername('');
     setPassword('');
-    
+    const data =  await res.data;
+    console.log(data)
+    await setUserData(data);
+    // // console.log(data.user.name)
+
+    console.log(userData);
+
+        nav('/studentDashboard')
   }
   // console.log(username,password)
   return (
