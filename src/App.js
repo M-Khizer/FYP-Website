@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import StudentDashboard from './Components/student-dashboard';
 import { useNavigate } from 'react-router-dom';
+
 import Navbar from './Components/navbar';
 import Loading from './Components/loading';
 
@@ -15,8 +16,11 @@ function App() {
 const [startScan, setStartScan] = useState(false);
 const [username,setUsername]=useState('');
 const [password,setPassword]=useState('');
-const [userData,setUserData]=useState([])
+const [userData,setUserData]=useState({})
+const [studentCourses,setStudentCourses]=useState([]);
 const nav = useNavigate();
+
+console.log(userData);
  
 console.log(startScan);
 
@@ -31,7 +35,9 @@ console.log(startScan);
         
         <Route path='/studentDashboard' 
           element={<StudentDashboard userData={userData}
-          setUserData={setUserData}/>} ></Route>
+          setUserData={setUserData}
+          setStartScan={setStartScan} nav={nav}
+          />} ></Route>
 
 
         <Route path='/' element={<SignIn username={username} password={password}
@@ -39,7 +45,8 @@ console.log(startScan);
           userData={userData} setUserData={setUserData}
           /> } />
         
-        <Route path='/dashboard' element={<Dashboard startScan ={startScan} setStartScan={setStartScan} />}></Route>
+        <Route path='/dashboard' element={<Dashboard startScan ={startScan} 
+        setStartScan={setStartScan} nav={nav} userData={userData}/>}></Route>
         
         <Route path='/webcam' element={<Webcam startScan ={startScan} 
           nav={nav}/>}></Route>

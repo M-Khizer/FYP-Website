@@ -12,7 +12,7 @@ export default function Webcam({startScan}) {
         <div className='sub-main web'>
         {/* {console.log(startScan)} */}
         <div className='cam-display-container'>
-        {!startScan && (
+        {startScan && (
             <QrReader
                 onResult={(result, error) => {
                 if (result) {

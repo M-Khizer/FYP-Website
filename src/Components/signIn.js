@@ -17,7 +17,7 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
     setUsername('');
     setPassword('');
     const data =  await res.data;
-    console.log(data)
+    // console.log(data)
     await setUserData(data);
     // // console.log(data.user.name)
 
