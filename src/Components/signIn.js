@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 export default function SignIn({username,password,nav,setPassword,setUsername,
-  userData,setUserData
+  userData,setUserData,setStudentCourses
 }) {
   
   
@@ -10,7 +10,7 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
     e.preventDefault();
     
     
-    const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/login',{
+    const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/logininstructor',{
       username,
       password
     })
@@ -23,7 +23,7 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
 
     console.log(userData);
 
-        nav('/studentDashboard')
+    nav('/studentDashboard')
   }
   // console.log(username,password)
   return (
@@ -43,10 +43,10 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
              onChange={(e=>{setPassword(e.target.value)})}
              value={password} />
           </div>
-          <div className="checkbox-container">
+          {/* <div className="checkbox-container">
             <input type="checkbox" />
             <label>Keep me signed in</label>
-          </div>
+          </div> */}
           <button className='sign-in-btn btn'>Sign In</button>
         </form>
         

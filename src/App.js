@@ -20,7 +20,7 @@ const [userData,setUserData]=useState({})
 const [studentCourses,setStudentCourses]=useState([]);
 const nav = useNavigate();
 
-console.log(userData);
+// console.log(userData);
  
 console.log(startScan);
 
@@ -36,13 +36,15 @@ console.log(startScan);
         <Route path='/studentDashboard' 
           element={<StudentDashboard userData={userData}
           setUserData={setUserData}
-          setStartScan={setStartScan} nav={nav}
+          setStartScan={setStartScan} nav={nav} studentCourses = {studentCourses}
+          setStudentCourses={setStudentCourses}
           />} ></Route>
 
 
         <Route path='/' element={<SignIn username={username} password={password}
           nav={nav} setPassword={setPassword} setUsername={setUsername} 
-          userData={userData} setUserData={setUserData}
+          userData={userData} setUserData={setUserData} studentCourses = {studentCourses}
+          setStudentCourses={setStudentCourses}
           /> } />
         
         <Route path='/dashboard' element={<Dashboard startScan ={startScan} 

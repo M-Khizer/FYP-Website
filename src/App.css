@@ -19,10 +19,11 @@ body{
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
-  height: 500px;
+  height: auto;
   width: 80%;
   /* box-shadow: 11px 12px 13px 12px rgb(207, 207, 207); */
   padding-top: 20px;
+  padding-bottom: 5rem;
   border-radius: 20px;
   background-color: white;
   margin-top: 1rem;
@@ -314,3 +315,12 @@ body{
 }
 /* Webcam */
 
+/* .course{
+  width: 80%;
+  background-color: rgba(211, 211, 211, 0.666);
+  border-radius: 2rem;
+  text-align: left;
+  padding: 2rem 0rem;
+  height: 70%;
+  margin: auto;
+} */
