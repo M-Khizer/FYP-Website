@@ -23,7 +23,7 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
 
     console.log(userData);
 
-    nav('/studentDashboard')
+    nav('/teacherDashboard')
   }
   // console.log(username,password)
   return (
