@@ -4,7 +4,7 @@ import Dashboard from './Components/dashboard';
 import Webcam from './Components/Webcam';
 import React, { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
-import StudentDashboard from './Components/student-dashboard';
+import TeacherDashboard from './Components/teacher-dashboard';
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from './Components/navbar';
@@ -14,10 +14,13 @@ import Loading from './Components/loading';
 function App() {
 
 const [startScan, setStartScan] = useState(false);
-const [username,setUsername]=useState('');
-const [password,setPassword]=useState('');
+const [username,setUsername]=useState('adeelanmed123@gmail.com');
+const [password,setPassword]=useState('adeel123');
 const [userData,setUserData]=useState({})
 const [studentCourses,setStudentCourses]=useState([]);
+// const [lat2,setLat2] =useState();
+// const [lon2,setLon2] =useState();
+// console.log(lat2,lon2);
 const nav = useNavigate();
 
 // console.log(userData);
@@ -33,8 +36,8 @@ console.log(startScan);
       <Routes>
         {/* <Route path='/loading' element={<Loading/>} /> */}
         
-        <Route path='/studentDashboard' 
-          element={<StudentDashboard userData={userData}
+        <Route path='/teacherDashboard' 
+          element={<TeacherDashboard userData={userData}
           setUserData={setUserData}
           setStartScan={setStartScan} nav={nav} studentCourses = {studentCourses}
           setStudentCourses={setStudentCourses}
