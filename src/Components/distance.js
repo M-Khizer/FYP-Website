@@ -2,25 +2,32 @@
 import { useState } from 'react';
 import { useEffect } from 'react'
 
-export default function Distance({lat2,lon2}) {
+export default function Distance({lat2,lon2,qrAltitude,qrClassSection,qrCourseId,
+  qrCourseName,qrFirstName,qrLastName,qrStudentId,qrTimeIn}) {
 
     let [lat1,setLat1]=useState();
     let [lon1,setLon1]=useState();
-    // let radius;
     const [radius,setRadius]=useState();
-    console.log(radius);
-    // let lat1= 42.139722;
-    // let lon1= -71.516667;
-    // let lat2 =25.197525;
-    // let lon2 = 55.274288;
+
+    console.log("lat2:",lat2);
+    console.log("lon2:",lon2); console.log("Lat2",lat2);
+    console.log("Long2",lon2);
+    console.log("Section",qrClassSection);
+    console.log("stid",qrStudentId);
+    console.log("coursre id",qrCourseId);
+    console.log("firstname",qrFirstName);
+    console.log("lastname",qrLastName);
+    console.log("timein",qrTimeIn);
+    console.log("coursename",qrCourseName);
+    console.log("altiitude",qrAltitude);
 
     useEffect(() => {
     //   location();
     navigator.geolocation.getCurrentPosition(pos=>{
         console.log("lat1",lat1);
         console.log("lon1",lon1);
-        console.log("lat2:",lat2);
-        console.log("lon2:",lon2);
+        // console.log("lat2:",lat2);
+        // console.log("lon2:",lon2);
         
         setLat1(pos.coords.latitude);
         setLon1(pos.coords.longitude);
@@ -32,7 +39,7 @@ export default function Distance({lat2,lon2}) {
         setRadius(items);
       }
     })
-    }, [lat1,lat2,lon2,lon1]);
+    }, [lat1]);
     
     function distance(lat1,
         lat2, lon1, lon2)

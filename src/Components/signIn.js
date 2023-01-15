@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 export default function SignIn({username,password,nav,setPassword,setUsername,
-  userData,setUserData,setStudentCourses
+  userData,setUserData,
 }) {
   
   
   const handleSignIn= async (e)=>{
     e.preventDefault();
-    
     
     const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/logininstructor',{
       username,
@@ -21,9 +20,9 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
     await setUserData(data);
     // // console.log(data.user.name)
 
-    console.log(userData);
+    // console.log(userData);
 
-    nav('/teacherDashboard')
+    nav('/courses');
   }
   // console.log(username,password)
   return (

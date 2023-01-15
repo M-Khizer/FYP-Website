@@ -18,71 +18,77 @@ export default function Webcam({startScan}) {
     const ref= useRef(null)
 
     
-    // const [lat2, setLat2] = useState(
-    //   localStorage.getItem("latit2")
-    //     ? JSON.parse(localStorage.getItem("latit2"))
-    //     : null
-    // );
-    const [lat2, setLat2] = useState()
-    // const [lon2, setLon2] = useState(
-    //   localStorage.getItem("longi2")
-    //     ? JSON.parse(localStorage.getItem("longi2"))
-    //     : null
-    // );
-    const [lon2, setLon2] = useState()
-    // const [qrClassSection, setQrClassSection] = useState(
-    //   localStorage.getItem("qrClassSection")
-    //     ? JSON.parse(localStorage.getItem("qrClassSection"))
-    //     : null
-    // );
-    const [qrClassSection, setQrClassSection] = useState()
-    // const [qrCourseId, setQrCourseId] = useState(
-    //   localStorage.getItem("qrCourseId")
-    //     ? JSON.parse(localStorage.getItem("qrCourseId"))
-    //     : null
-    // );
-    const [qrCourseId, setQrCourseId] = useState()
-    // const [qrCourseName, setQrCourseName] = useState(
-    //   localStorage.getItem("qrCourseName")
-    //     ? JSON.parse(localStorage.getItem("qrCourseName"))
-    //     : null
-    // );
-    const [qrCourseName, setQrCourseName] = useState()
-    // const [qrFirstName, setQrFirstName] = useState(
-    //   localStorage.getItem("qrFirstName")
-    //     ? JSON.parse(localStorage.getItem("qrFirstName"))
-    //     : null
-    // );
-    const [qrFirstName, setQrFirstName] = useState()
+    const [lat2, setLat2] = useState(
+      localStorage.getItem("latit2")
+        ? JSON.parse(localStorage.getItem("latit2"))
+        : null
+    );
+    // const [lat2, setLat2] = useState()
     
-    // const [qrLastName, setQrLastName] = useState(
-    //   localStorage.getItem("qrLastName")
-    //     ? JSON.parse(localStorage.getItem("qrLastName"))
-    //     : null
-    // );
-    // const [qrStudentId, setQrStudentId] = useState(
-    //   localStorage.getItem("qrStudentId")
-    //     ? JSON.parse(localStorage.getItem("qrStudentId"))
-    //     : null
-    // );
-    const [qrLastName, setQrLastName] = useState();
+    const [lon2, setLon2] = useState(
+      localStorage.getItem("longi2")
+        ? JSON.parse(localStorage.getItem("longi2"))
+        : null
+    );
     
-    const [qrStudentId, setQrStudentId] = useState();
+    // const [lon2, setLon2] = useState()
+    const [qrClassSection, setQrClassSection] = useState(
+      
+      localStorage.getItem("qrClassSection")
+        ? JSON.parse(localStorage.getItem("qrClassSection"))
+        : null
+    );
+    // const [qrClassSection, setQrClassSection] = useState('')
+    const [qrCourseId, setQrCourseId] = useState(
+      localStorage.getItem("qrCourseId")
+        ? JSON.parse(localStorage.getItem("qrCourseId"))
+        : null
+    );
+    // const [qrCourseId, setQrCourseId] = useState('')
     
-    // const [qrAltitude, setQrAltitude] = useState(
-    //   localStorage.getItem("qrAltitude")
-    //     ? JSON.parse(localStorage.getItem("qrAltitude"))
-    //     : null
-    // );  
-    const [qrAltitude, setQrAltitude] = useState();
+    const [qrCourseName, setQrCourseName] = useState(
+      localStorage.getItem("qrCourseName")
+        ? JSON.parse(localStorage.getItem("qrCourseName"))
+        : null
+    );
+    
+    // const [qrCourseName, setQrCourseName] = useState('')
+    
+    const [qrFirstName, setQrFirstName] = useState(
+      localStorage.getItem("qrFirstName")
+        ? JSON.parse(localStorage.getItem("qrFirstName"))
+        : null
+    );
+    // const [qrFirstName, setQrFirstName] = useState('')
+    
+    const [qrLastName, setQrLastName] = useState(
+      localStorage.getItem("qrLastName")
+        ? JSON.parse(localStorage.getItem("qrLastName"))
+        : null
+    );
+    const [qrStudentId, setQrStudentId] = useState(
+      localStorage.getItem("qrStudentId")
+        ? JSON.parse(localStorage.getItem("qrStudentId"))
+        : null
+    );
+    // const [qrLastName, setQrLastName] = useState('');
+    
+    // const [qrStudentId, setQrStudentId] = useState('');
+    
+    const [qrAltitude, setQrAltitude] = useState(
+      localStorage.getItem("qrAltitude")
+        ? JSON.parse(localStorage.getItem("qrAltitude"))
+        : null
+    );  
+    // const [qrAltitude, setQrAltitude] = useState('');
 
-    // const [qrTimeIn, setQrTimeIn] = useState(
-    //   localStorage.getItem("qrTimeIn")
-    //     ? JSON.parse(localStorage.getItem("qrTimeIn"))
-    //     : null
-    // );
+    const [qrTimeIn, setQrTimeIn] = useState(
+      localStorage.getItem("qrTimeIn")
+        ? JSON.parse(localStorage.getItem("qrTimeIn"))
+        : null
+    );
     
-    const [qrTimeIn, setQrTimeIn] = useState()
+    // const [qrTimeIn, setQrTimeIn] = useState('')
    
     useEffect(() => {
       //   location();
@@ -153,17 +159,56 @@ export default function Webcam({startScan}) {
     console.log("coursename",qrCourseName);
     console.log("altiitude",qrAltitude);
 
-    const handleAttendance= async()=>{
-      const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/attendance',{
-        qrClassSection,qrStudentId,qrCourseId,qrFirstName,qrLastName,qrTimeIn,
-        qrCourseName
-      }).then(()=>{
-        console.log('handle attendance was scanned');
-      })
+    //   const attendance = {
+    //     "classSection": "14A",
+    //     "courseId": "EE100",
+    //     "courseName": "Cryptography 1",
+    //     "firstName": "Syed",
+    //     "lastName": "Ahmed Kamal",
+    //     "studentId": "54358",
+    //     "timeIn": "Sun Jan 14:02:01 GMT+05:00 2023"
+    // }
+  
+    const handleAttendance= async(qrClassSection,qrCourseId,qrStudentId,
+      qrTimeIn,qrFirstName,qrLastName,qrCourseName)=>{
 
+      console.log("Lat1",lat1);
+      console.log("Lon1",lon1);
+      console.log('distance',radius);
+      console.log("Lat2",lat2);
+      console.log("Long2",lon2);
+      console.log("Section",qrClassSection);
+      console.log("stid",qrStudentId);
+      console.log("coursre id",qrCourseId);
+      console.log("firstname",qrFirstName);
+      console.log("lastname",qrLastName);
+      console.log("timein",qrTimeIn);
+      console.log("coursename",qrCourseName);
+      console.log("altiitude",qrAltitude);
+
+
+    const attendance = {
+      "classSection": qrClassSection,
+      "courseId": qrCourseId,
+      "courseName": qrCourseName,
+      "firstName": qrFirstName,
+      "lastName": qrLastName,
+      "studentId": qrStudentId,
+      "timeIn": qrTimeIn
+  }
+    console.log(attendance);
+      if (qrStudentId){
+        console.log("Post request hit");
+        const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/attendance',
+        attendance).then((data)=>{
+          console.log(attendance);
+        })
+      }
+      else{
+        console.log('qr filled null');
+      }
+      }
       
-    
-    }
     
   return (
     
@@ -176,33 +221,36 @@ export default function Webcam({startScan}) {
                 
                 onResult={(result, error) => {
                 if (result) {
-                console.log(result)
+                // console.log(result)
                 // setData(prev=>[...prev,result?.text])
                 const parseData1 = JSON.parse(result)
-               setQrAltitude(parseData1?.altitude);
-               setQrClassSection(parseData1?.classSection);
-               setQrCourseId(parseData1?.courseId);
-               setQrCourseName(parseData1?.courseName);
-               setQrFirstName(parseData1?.firstName);
-               setQrLastName(parseData1?.lastName);
-               setQrStudentId(parseData1?.studentId);
-               setQrTimeIn(parseData1?.timeIn);
-               setLat2(parseData1?.latitude);
-               setLon2(parseData1?.longitude)
+              //  setQrAltitude(parseData1?.altitude);
+              //  setQrClassSection(parseData1?.classSection);
+              //  setQrCourseId(parseData1?.courseId);
+              //  setQrCourseName(parseData1?.courseName);
+              //  setQrFirstName(parseData1?.firstName);
+              //  setQrLastName(parseData1?.lastName);
+              //  setQrStudentId(parseData1?.studentId);
+              //  setQrTimeIn(parseData1?.timeIn);
+              //  setLat2(parseData1?.latitude);
+              //  setLon2(parseData1?.longitude)
                 // console.log(parseData1)
                 // console.log(parseData1?.latitude,parseData1?.longitude);
-                // localStorage.setItem('latit2',JSON.stringify(parseData1?.latitude));
-                // localStorage.setItem('longi2',JSON.stringify(parseData1?.longitude));
-                // localStorage.setItem('qrClassSection',JSON.stringify(parseData1?.classSection));
-                // localStorage.setItem('qrCourseId',JSON.stringify(parseData1?.courseId));
-                // localStorage.setItem('qrCourseName',JSON.stringify(parseData1?.courseName));
-                // localStorage.setItem('qrFirstName',JSON.stringify(parseData1?.firstName));
-                // localStorage.setItem('qrLastName',JSON.stringify(parseData1?.lastName));
-                // localStorage.setItem('qrStudentId',JSON.stringify(parseData1?.studentId));
-                // localStorage.setItem('qrTimeIn',JSON.stringify(parseData1?.timeIn));
-                // localStorage.setItem('qrAltitude',JSON.stringify(parseData1?.altitude));
+                localStorage.setItem('latit2',JSON.stringify(parseData1?.latitude));
+                localStorage.setItem('longi2',JSON.stringify(parseData1?.longitude));
+                localStorage.setItem('qrClassSection',JSON.stringify(parseData1?.classSection));
+                localStorage.setItem('qrCourseId',JSON.stringify(parseData1?.courseId));
+                localStorage.setItem('qrCourseName',JSON.stringify(parseData1?.courseName));
+                localStorage.setItem('qrFirstName',JSON.stringify(parseData1?.firstName));
+                localStorage.setItem('qrLastName',JSON.stringify(parseData1?.lastName));
+                localStorage.setItem('qrStudentId',JSON.stringify(parseData1?.studentId));
+                localStorage.setItem('qrTimeIn',JSON.stringify(parseData1?.timeIn));
+                localStorage.setItem('qrAltitude',JSON.stringify(parseData1?.altitude));
                 console.log('qr was scanned');
-                // handleAttendance();
+                
+                setTimeout(() => {handleAttendance(qrClassSection,qrCourseId,qrStudentId,
+                  qrTimeIn,qrFirstName,qrLastName,qrCourseName);}, 5000)
+
 
                 // localStorage.setItem('firstName',JSON.stringify(parseData1.firstName));
 

@@ -1,27 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function TeacherDashboard({userData,setUserData,nav,setStartScan,
-    setStudentCourses,studentCourses,lon2,lat2,setLon2,setLat2
-}) {
-    const [courseName,setCourseName] = useState(false);
-
-    console.log(lat2,lon2);
-    useEffect(() => {
-     handleStudentCourses();   
-    }, [userData])
-    
-    const handleStudentCourses=()=>{
-        setStudentCourses(userData?.instructor.teaching);
-    }
-    console.log(courseName);
-    // console.log(userData?.enrolledIn.courseName)
-    
+                                            setSelectCourse,selectCourse})
+    {
     const handleWebcam=()=>{
         setStartScan(true);
         console.log('webcam function clicked');
-        nav('/webcam');
+        nav('/Webcam');
     }
 
   return (
@@ -33,27 +20,14 @@ export default function TeacherDashboard({userData,setUserData,nav,setStartScan,
             <div className='student-metadata'>
                 
                 <span>ID: {userData?.instructor.id}</span>
-                {/* <span>{userData?.student.program}</span> */}
+                <span>{selectCourse}</span>
             </div>
 
             
-            <div className='boxes'>
-            
+            <div className='boxes'> 
                 
             {
-            courseName ? studentCourses.map(course=>(
-                    <>                    
-                    <div  className='box-container course 
-                        dashboard-sub-head'> ({course.courseId}) {course.courseName} 
-                        <div className='dashboard-btn'>View</div>
-                    </div>
-
-                    {/* <hr></hr> */}
-                    {/* <div>{course.courseId}</div> */}
-                    </>
-                    
-                ))
-                :
+           
                 (
                 <>
                 <button className='box-container'  onClick={e=>{handleWebcam()}}>
@@ -64,7 +38,7 @@ export default function TeacherDashboard({userData,setUserData,nav,setStartScan,
                     <div className='dashboard-btn'>Create</div>
                 </button>
 
-                    <button className='box-container' onClick={()=>{setCourseName(true)}}>
+                    <button className='box-container'>
                     <div className='dashboard-sub-head'>View previous attendance</div>
                     <div className='dashboard-btn'>View</div>
                     </button>

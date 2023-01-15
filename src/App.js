@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Navbar from './Components/navbar';
 import Loading from './Components/loading';
+import Courses from './Components/courses';
 
 
 function App() {
@@ -17,13 +18,11 @@ const [startScan, setStartScan] = useState(false);
 const [username,setUsername]=useState('adeelanmed123@gmail.com');
 const [password,setPassword]=useState('adeel123');
 const [userData,setUserData]=useState({})
-const [studentCourses,setStudentCourses]=useState([]);
-// const [lat2,setLat2] =useState();
-// const [lon2,setLon2] =useState();
-// console.log(lat2,lon2);
+const [teacherCourses,setTeacherCourses]=useState([]);
+const [selectCourse,setSelectCourse]=useState();
 const nav = useNavigate();
 
-// console.log(userData);
+console.log(teacherCourses);
  
 console.log(startScan);
 
@@ -39,19 +38,20 @@ console.log(startScan);
         <Route path='/teacherDashboard' 
           element={<TeacherDashboard userData={userData}
           setUserData={setUserData}
-          setStartScan={setStartScan} nav={nav} studentCourses = {studentCourses}
-          setStudentCourses={setStudentCourses}
-          />} ></Route>
+          setStartScan={setStartScan} nav={nav} teacherCourses = {teacherCourses}
+          setTeacherCourses={setTeacherCourses}
+          setSelectCourse={setSelectCourse} selectCourse={selectCourse}/>} ></Route>
 
 
         <Route path='/' element={<SignIn username={username} password={password}
           nav={nav} setPassword={setPassword} setUsername={setUsername} 
-          userData={userData} setUserData={setUserData} studentCourses = {studentCourses}
-          setStudentCourses={setStudentCourses}
+          userData={userData} setUserData={setUserData} teacherCourses = {teacherCourses}
+          setTeacherCourses={setTeacherCourses}
           /> } />
         
-        <Route path='/dashboard' element={<Dashboard startScan ={startScan} 
-        setStartScan={setStartScan} nav={nav} userData={userData}/>}></Route>
+        <Route path='/courses' element={<Courses teacherCourses={teacherCourses} 
+          setTeacherCourses={setTeacherCourses} userData={userData} nav={nav}
+          setSelectCourse={setSelectCourse} selectCourse={selectCourse} />}></Route>       
         
         <Route path='/webcam' element={<Webcam startScan ={startScan} 
           nav={nav}/>}></Route>
