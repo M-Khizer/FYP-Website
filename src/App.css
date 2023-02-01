@@ -143,10 +143,42 @@ body{
   height: 320px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  width: 100%;
+}
+.student-names{
+  width: 100%;
+  display: block;
 }
 .web{
   height: auto;
 }
+.table-container {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.table-container td, .table-container th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container tr:nth-child(even){background-color: #f2f2f2;}
+
+.table-container tr:hover {background-color: #ddd;}
+
+.table-container th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  /* background-color: rgb(81, 81, 250);
+   */
+  background-color: grey;
+  color: white;
+}
+
 @media (min-width:1920px)
 {
   .sub-main{
