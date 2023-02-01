@@ -103,7 +103,50 @@ body{
     background-color: blue;
 
 }
+/* Webcam */
+.cam-display-container{
+  /* border: 10px solid yellow; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+  /* position: relative; */
+}
+.cam-display{
+  width: 50%;
+  height: 70%;
+  /* border:1px solid red; */
+  /* border-radius: 1rem; */
+  margin-right: 1rem;
+}
 
+.student-list{
+  /* border: 1px solid green; */
+  /* color: tomato; */
+  /* display: flex;
+  flex-direction: column; */
+  width: 50%;
+  background-color: rgba(211, 211, 211, 0.666);
+  border-radius: 2rem;
+  text-align: left;
+  padding: 2rem 0rem;
+  height: 70%;
+  margin: auto;
+}
+.student{
+  /* border: 1px solid purple; */
+  /* display: flex;
+  flex-wrap: wrap; */
+  margin-left: 2rem;
+  /* background-color: #1E1F25; */
+  /* border-radius: 20px; */
+  height: 320px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.web{
+  height: auto;
+}
 @media (min-width:1920px)
 {
   .sub-main{
@@ -274,53 +317,3 @@ body{
 }
 /* Dashboard */
 
-/* Webcam */
-.cam-display-container{
-  /* border: 10px solid yellow; */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 2rem;
-  /* position: relative; */
-}
-.cam-display{
-  width: 50%;
-  height: 70%;
-  /* border:1px solid red; */
-  /* border-radius: 1rem; */
-  margin-right: 1rem;
-}
-
-.student-list{
-  /* border: 1px solid green; */
-  /* color: tomato; */
-  /* display: flex;
-  flex-direction: column; */
-  width: 50%;
-  background-color: rgba(211, 211, 211, 0.666);
-  border-radius: 2rem;
-  text-align: left;
-  padding: 2rem 0rem;
-  height: 70%;
-  margin: auto;
-}
-.student{
-  /* border: 1px solid purple; */
-  /* display: flex;
-  flex-wrap: wrap; */
-  margin-left: 2rem;
-}
-.web{
-  height: auto;
-}
-/* Webcam */
-
-/* .course{
-  width: 80%;
-  background-color: rgba(211, 211, 211, 0.666);
-  border-radius: 2rem;
-  text-align: left;
-  padding: 2rem 0rem;
-  height: 70%;
-  margin: auto;
-} */

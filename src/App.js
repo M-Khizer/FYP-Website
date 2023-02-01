@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import TeacherDashboard from './Components/teacher-dashboard';
 import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from './Components/navbar';
 import Loading from './Components/loading';

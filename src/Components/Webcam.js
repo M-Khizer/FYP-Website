@@ -8,14 +8,19 @@ import axios from 'axios';
 
 // import { json } from 'react-router-dom';
 
-export default function Webcam({startScan}) {
+export default function Webcam({startScan,userData,selectCourse}) {
+
     const [loadingScan, setLoadingScan] = useState(false);
     // const [data, setData] = useState([]);
     let [lat1,setLat1]=useState(0);
     let [lon1,setLon1]=useState(0);
+    let [alt1,setAlt1]=useState(0);
+    
     const [radius,setRadius]=useState(0);
     // const[studentFullName,setStudentFullName]=useState('');
+    const[studentFirstName,setStundentFirstName]=useState([]);
     const [studentName,setStudentName]=useState([]);
+    const [studentLastName,setStudentLastName]=useState([]);
     const ref= useRef(null)
 
     
@@ -97,7 +102,6 @@ export default function Webcam({startScan}) {
     //     ? JSON.parse(localStorage.getItem("qrTimeIn"))
     //     : null
     // );
-    
     const [qrTimeIn, setQrTimeIn] = useState('')
    
     useEffect(() => {
@@ -105,24 +109,29 @@ export default function Webcam({startScan}) {
       navigator.geolocation.getCurrentPosition(pos=>{
           console.log("lat1",lat1);
           console.log("lon1",lon1);
-          // console.log("lat2:",lat2);
+          console.log("alt1:",alt1);
+          console.log('radius',radius);
           // console.log("lon2:",lon2);
           
           setLat1(pos.coords.latitude);
           setLon1(pos.coords.longitude);
-  
+          setAlt1(pos.coords.altitude);
+
           distance(lat1,lat2,lon1,lon2);
 
-          handleAttendance();
+          // handleAttendance();
 
-          const items = JSON.parse(localStorage.getItem('dist'));
-        if(items){
-          setRadius(items);
-          // console.log(radius)
-        }
+        //   const items = JSON.parse(localStorage.getItem('dist'));
+        // if(items){
+        //   setRadius(items);
+        //   // console.log(radius)
+        // }
       })
-      }, [lat1,lat2,qrStudentId]);
+      }, [qrStudentId]);
       // console.log(qrAltitude)
+      
+      
+      
       function distance(lat1,
           lat2, lon1, lon2)
   {
@@ -151,37 +160,19 @@ export default function Webcam({startScan}) {
   // calculate the result
   // setRadius(c*r);
   // console.log(c*r);
-  const rad=c*r;
-  // console.log(lat1,lon1,lat2,lon2);
-  localStorage.setItem('dist',JSON.stringify(rad));
-  // setRadius(r1);
-  // return(c*r);
+  const rad=(c*r)*1000;
+  setRadius(rad);
+  console.log('distance without alt',rad);
+  if(rad<=10){
+    handleAttendance();
   }
-    // console.log("Lat1",lat1);
-    // console.log("Lon1",lon1);
-    // console.log('distance',radius);
-    // console.log("Lat2",lat2);
-    // console.log("Long2",lon2);
-    // console.log("Section",qrClassSection);
-    // console.log("stid",qrStudentId);
-    // console.log("coursre id",qrCourseId);
-    // console.log("firstname",qrFirstName);
-    // console.log("lastname",qrLastName);
-    // console.log("timein",qrTimeIn);
-    // console.log("coursename",qrCourseName);
-    // console.log("altiitude",qrAltitude);
+  else{
+    showAttendanceError('Out of Radius');
+  }
+  
+  }
 
-    //   const attendance = {
-    //     "classSection": "14A",
-    //     "courseId": "EE100",
-    //     "courseName": "Cryptography 1",
-    //     "firstName": "Syed",
-    //     "lastName": "Ahmed Kamal",
-    //     "studentId": "54358",
-    //     "timeIn": "Sun Jan 14:02:01 GMT+05:00 2023"
-    // }
-
-    const attendance = {
+  const attendance = {
       "classSection": qrClassSection,
       "courseId": qrCourseId,
       "courseName": qrCourseName,
@@ -190,40 +181,37 @@ export default function Webcam({startScan}) {
       "studentId": qrStudentId,
       "timeIn": qrTimeIn
   }
-  // console.log(attendance);
-  // const xyz=()=>{
-  //   console.log("Lat1",lat1);
-  //   console.log("Lon1",lon1);
-  //   console.log('distance',radius);
-  //   console.log("Lat2",lat2);
-  //   console.log("Long2",lon2);
-  //   console.log("Section",qrClassSection);
-  //   console.log("stid",qrStudentId);
-  //   console.log("coursre id",qrCourseId);
-  //   console.log("firstname",qrFirstName);
-  //   console.log("lastname",qrLastName);
-  //   console.log("timein",qrTimeIn);
-  //   console.log("coursename",qrCourseName);
-  //   console.log("altiitude",qrAltitude);
-
-  //   // window.location.reload();
-  // }
-    
+  
+  const showAttendanceError = (error) => {
+    toast.error(error, {
+        position: toast.POSITION.TOP_RIGHT
+    });
+  };
   const handleAttendance= async()=>{
+    console.log(qrStudentId)
+      if (qrStudentId){
+      // console.log(`teacher course ${selectCourse} student course ${qrCourseName}`)
 
-      
-     if (qrStudentId){
+      if(selectCourse.toString() === qrCourseName.toString()){
+        console.log(`teacher course ${selectCourse} student course ${qrCourseName}`)
+        
         console.log("Post request hit");
+
         const res = await axios.post('https://sdok7nl5h2.execute-api.ap-northeast-1.amazonaws.com/prod/attendance',
         attendance).then((data)=>{
-        }).then(()=>{
-          // setStudentFullName(qrFirstName.concat(" ",qrLastName))
-          console.log(attendance)
+          console.log(data.data.attendance.firstName)
+          setStudentName(prev=>[...prev,data.data.attendance.firstName])
+          // setStudentLastName(prev=>[...prev,qrLastName]);
+          // setStundentFirstName(prev=>[...prev,qrFirstName]);
+
+          // setStudentName(prev=>[...prev,qrFirstName]);
           showSuccessMessage();
-          setStudentName(prev=>[...prev,qrFirstName])
         }).catch(e=>{
-          showErrorMessage();
+          showErrorMessage();        
         })
+      }else{
+        showAttendanceError('Wrong Course')    
+      }
       }
       else{
         console.log('qr filled null');
@@ -231,7 +219,7 @@ export default function Webcam({startScan}) {
       }
       
       const showSuccessMessage = () => {
-        toast.success('Success Notification !', {
+        toast.success('Attendance marked', {
             position: toast.POSITION.TOP_RIGHT
         });
     };
@@ -244,6 +232,13 @@ export default function Webcam({startScan}) {
     
     <div className='main'>  
         <div className='sub-main web'>
+        {/* <h2 className='heading student-name'>{userData?.user.name}</h2> */}
+            
+            {/* <div className='student-metadata'>
+                
+                <span>ID: {userData?.instructor.id}</span>
+                <span>{selectCourse}</span>
+            </div> */}
         {/* {console.log(startScan)} */}
         <div className='cam-display-container'>
         {startScan && (
@@ -264,27 +259,8 @@ export default function Webcam({startScan}) {
                setQrTimeIn(parseData1?.timeIn);
                setLat2(parseData1?.latitude);
                setLon2(parseData1?.longitude);
-                // console.log(parseData1)
-                // console.log(parseData1?.latitude,parseData1?.longitude);
-                // localStorage.setItem('latit2',JSON.stringify(parseData1?.latitude));
-                // localStorage.setItem('longi2',JSON.stringify(parseData1?.longitude));
-                // localStorage.setItem('qrClassSection',JSON.stringify(parseData1?.classSection));
-                // localStorage.setItem('qrCourseId',JSON.stringify(parseData1?.courseId));
-                // localStorage.setItem('qrCourseName',JSON.stringify(parseData1?.courseName));
-                // localStorage.setItem('qrFirstName',JSON.stringify(parseData1?.firstName));
-                // localStorage.setItem('qrLastName',JSON.stringify(parseData1?.lastName));
-                // localStorage.setItem('qrStudentId',JSON.stringify(parseData1?.studentId));
-                // localStorage.setItem('qrTimeIn',JSON.stringify(parseData1?.timeIn));
-                // localStorage.setItem('qrAltitude',JSON.stringify(parseData1?.altitude));
-                console.log('qr was scanned');
-                
-                // setTimeout(() => {handleAttendance();}, 5000)
-
-
-                // localStorage.setItem('firstName',JSON.stringify(parseData1.firstName));
-
-                // setQrCourseName(parseData1.courseName);
-              // {console.log(qrCourseName)}
+               console.log('qr was scanned');
+               
               }
 
         // if (error) {
@@ -298,7 +274,12 @@ export default function Webcam({startScan}) {
       )}           
 
         <div className='student-list'>
-            <h3 className='student'>{studentName.map(name=>(<div>{name}</div>))}</h3>
+          <div className='student-names'>
+          <h3 className='student'>{studentName.map(name=>(<div>{name}</div>))}</h3>
+          <span className='student'>{studentLastName.map(name=>(<span>{name}</span>))}</span>
+          <h3></h3>
+          </div>
+          
         </div>
 
     </div>
