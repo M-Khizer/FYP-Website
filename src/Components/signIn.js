@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { logDOM } from '@testing-library/react';
 export default function SignIn({username,password,nav,setPassword,setUsername,
   userData,setUserData,
 }) {
   
   const [error,setError]=useState(false);
-
+    
+  
+ 
+  
   const handleSignIn= async (e)=>{
     e.preventDefault();
     
@@ -21,6 +25,7 @@ export default function SignIn({username,password,nav,setPassword,setUsername,
     const data =  await res.data;
     // console.log(data)
     await setUserData(data);
+    localStorage.setItem('token',JSON.stringify(res.data.token));
     // // console.log(data.user.name)
 
      // console.log(userData);
