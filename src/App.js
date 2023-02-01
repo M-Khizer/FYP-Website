@@ -2,7 +2,7 @@ import SignIn from './Components/signIn';
 import './App.css';
 import Dashboard from './Components/dashboard';
 import Webcam from './Components/Webcam';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Routes,Route} from 'react-router-dom'
 import TeacherDashboard from './Components/teacher-dashboard';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Components/navbar';
 import Loading from './Components/loading';
 import Courses from './Components/courses';
-
+import Attendance from './Components/attendance';
 
 function App() {
 
@@ -23,9 +23,17 @@ const [teacherCourses,setTeacherCourses]=useState([]);
 const [selectCourse,setSelectCourse]=useState();
 const nav = useNavigate();
 
-console.log(teacherCourses);
+console.log(selectCourse);
  
 console.log(startScan);
+
+useEffect(() => {
+  const loggedIn = localStorage.getItem('token');
+  if(loggedIn) {
+    const foundUser = JSON.parse(loggedIn);
+    setUserData(foundUser);
+  }
+}, [])
 
   return (
     <div className="App">
@@ -55,7 +63,10 @@ console.log(startScan);
           setSelectCourse={setSelectCourse} selectCourse={selectCourse} />}></Route>       
         
         <Route path='/webcam' element={<Webcam startScan ={startScan} 
-          nav={nav}/>}></Route>
+          nav={nav} userData={userData} selectCourse={selectCourse}/>}></Route>
+
+        <Route path='/attendance' element={<Attendance userData={userData} 
+          selectCourse={selectCourse} />}></Route>
 
         {/* <Route path='/studentDashboard' element={<StudentDashboard userData={userData}
           setUserData={setUserData}
